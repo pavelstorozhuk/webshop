@@ -1,0 +1,23 @@
+﻿@using NoteStore.WebUI.Models
+@using NoteStore.WebUI.HtmlHelpers
+
+@model NotesListViewModel
+
+@{
+    ViewBag.Title = "Товары";
+}
+
+@foreach (var p in @Model.Notes)
+{
+    
+       
+           
+          @Html.Partial("NoteSummary", p)
+
+        
+}
+
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>

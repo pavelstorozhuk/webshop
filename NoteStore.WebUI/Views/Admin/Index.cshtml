@@ -1,0 +1,116 @@
+﻿@model IEnumerable<NoteStore.Domain.Entities.Note>
+
+
+@{
+    Layout = null;
+}
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Список ноутбуков</h3>
+    </div>
+        <table class="table">
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th width="200px">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Diagonal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HDD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OperationSystem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Processor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RAM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Touchscreen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VideoMemory)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                
+                <tr>
+                   
+                    <td>
+                        @Html.DisplayFor(model => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diagonal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HDD)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OperationSystem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Processor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RAM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Touchscreen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoMemory)
+                    </td>
+                    <td>
+                       
+                        @Html.ActionLink("Редактировать", "Edit", new { item.NoteId }) 
+                    
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("NoteId", item.NoteId)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="panel-footer">
+            @Html.ActionLink("Добавить", "Create")
+        </div>
+</div>
